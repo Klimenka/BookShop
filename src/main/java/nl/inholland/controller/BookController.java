@@ -2,12 +2,14 @@ package nl.inholland.controller;
 
 import nl.inholland.model.Book;
 import nl.inholland.service.BookShopService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 import java.awt.*;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/books")
@@ -23,8 +25,8 @@ public class BookController {
         return service.getBooks();
     }
 
-    @RequestMapping(value = "{book}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Book getBookById(@PathVariable String id){
+    @RequestMapping(value = "id", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Book getBookById(@RequestParam(value="id") String id){
         return service.getBook(id);
     }
 
@@ -32,4 +34,11 @@ public class BookController {
     public void addBook(@RequestBody Book book){
         service.addBook(book);
     }
+
+
+   @RequestMapping(value="title", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+   public Book getBookByTitle(@RequestParam(value="title") String title){
+   return service.getBookByTitle(title);
+   }
+
 }

@@ -4,6 +4,8 @@ import nl.inholland.model.Book;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
+import java.util.Optional;
 
 @Service
 public class BookShopService {
@@ -30,8 +32,19 @@ public class BookShopService {
 
     public void addBook(Book book){
         books.add(book);
+
     }
 
+ public Book getBookByTitle(String title){
+        Stream <Book> bookByTitle = books.stream();
+
+        Book book = bookByTitle
+                .filter(b -> b.getTitle().contentEquals(title))
+                .findAny()
+                .get();
+
+        return book;
+    }
 
 
 }

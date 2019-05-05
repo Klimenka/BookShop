@@ -18,6 +18,10 @@ public class Book {
         this.publishYear = publishYear;
     }
 
+    public Book(){
+
+    }
+
     public String getId() {
         return id;
     }
